@@ -25,10 +25,12 @@ const http = require('http');
 const fs = require('fs');
 const cors = require('cors');
 
+
+
 const foodItems = [
-  { id: 1, name: 'Pizza', price: 10, image: 'https://picsum.photos/150?random=1' },
-  { id: 2, name: 'Burger', price: 5, image: 'https://picsum.photos/150?random=2' },
-  { id: 3, name: 'Pasta', price: 8, image: 'https://picsum.photos/150?random=3' },
+    { id: 1, name: 'Pizza', price: 10, image: 'https://via.placeholder.com/150?text=Pizza' },
+    { id: 2, name: 'Burger', price: 5, image: 'https://via.placeholder.com/150?text=Burger' },
+    { id: 3, name: 'Pasta', price: 8, image: 'https://via.placeholder.com/150?text=Pasta' },
 ];
 
 const server = http.createServer((req, res) => {

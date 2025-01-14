@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import "./app.css";
+
+// Importing local images
+import pasta from "./pasta.jpg"
+import pizza from "./pizza.jpg"
+import bug from "./burger.jpg"
 
 const App = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -7,10 +13,13 @@ const App = () => {
   const [isCheckout, setIsCheckout] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/food')
-      .then((response) => response.json())
-      .then((data) => setFoodItems(data))
-      .catch((error) => console.error('Error:', error));
+    // Instead of fetching from API, we directly set the local foodItems
+    const localFoodItems = [
+      { id: 1, name: 'Pizza', price: 10, image: pizza },
+      { id: 2, name: 'Burger', price: 5, image: bug },
+      { id: 3, name: 'Pasta', price: 8, image: pasta },
+    ];
+    setFoodItems(localFoodItems);
   }, []);
 
   const addToCart = (item) => {
@@ -31,11 +40,18 @@ const App = () => {
             {foodItems.map((item) => (
               <div className="col-md-4 mb-4" key={item.id}>
                 <div className="card h-100">
-                  <img src={item.image} className="card-img-top" alt={item.name} />
+                  <img
+                    src={item.image}
+                    className="card-img-top"
+                    alt={item.name}
+                  />
                   <div className="card-body text-center">
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text">Price: ${item.price}</p>
-                    <button className="btn btn-primary" onClick={() => addToCart(item)}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => addToCart(item)}
+                    >
                       Add to Cart
                     </button>
                   </div>
@@ -68,7 +84,10 @@ const App = () => {
           <h2>Checkout</h2>
           <p>Your total is: ${cart.reduce((acc, item) => acc + item.price, 0)}</p>
           <p className="text-success">Dummy Payment Page: Payment Successful!</p>
-          <button className="btn btn-primary" onClick={() => window.location.reload()}>
+          <button
+            className="btn btn-primary"
+            onClick={() => window.location.reload()}
+          >
             Order Again
           </button>
         </div>
@@ -77,4 +96,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;
